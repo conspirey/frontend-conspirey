@@ -1,2 +1,3 @@
-# frontend-social-media
-Conspiracy social media site frontend written in react(vite)
+# Frontend for Conspirey social media app.
+Conspiracy social media site frontend written in react
+
