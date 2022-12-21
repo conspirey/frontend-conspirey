@@ -6,7 +6,7 @@ import './index.css'
 import './css/tail.css'
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <App />
+    {/* <App /> */}
     <Test />
   </React.StrictMode>,
 )
