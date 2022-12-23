@@ -2,7 +2,7 @@
 import { defineComponent, ref } from 'vue'
 import io from 'socket.io-client'
 
-const socket = io.connect('ws://localhost:8080', {transports: ["websocket"]})
+const socket = io.connect('ws://localhost:8080', {transports: ["websocket"],   withCredentials: true})
 // socket.on('echo', (data: any) => {
 //   console.log(data);
 // });
