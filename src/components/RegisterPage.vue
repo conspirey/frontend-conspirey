@@ -1,9 +1,64 @@
 <script setup lang="ts">
 import Register from "./auth/Register.vue"
+
+// let btnReg = document.getElementById("btnReg") as HTMLButtonElement
+function REGBTN(ev: MouseEvent) {
+
+}
 </script>
 
 <template>
     <div class="register">
-        <Register />
+            <div class="login border-2 p-4 rounded-lg">
+            <div class="text">
+                Register your Conspirey account
+            </div>
+
+            <br />
+            <input class="
+            form-control
+            block
+            w-full
+            px-3
+            py-1.5
+            text-base
+            font-normal
+            text-gray-700
+            bg-white bg-clip-padding
+            border border-solid border-gray-300
+            rounded
+            transition
+            ease-in-out
+            m-0
+            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
+            " type="text"  placeholder="Enter username..." />
+            <span class="text-gray-500 text-sm">username has to be from 3-16 characters long, <br> can contain numbers, latin letters, _ symbol</span>
+            <div class="di my-5"></div>
+            <input class="
+            form-control
+            block
+            w-full
+            px-3
+            py-1.5
+            text-base
+            font-normal
+            text-gray-700
+            bg-white bg-clip-padding
+            border border-solid border-gray-300
+            rounded
+            transition
+            ease-in-out
+            m-0
+            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
+            " type="password" placeholder="Enter password..." />
+            <span class="text-gray-500 text-sm">password has to be from 8-32 characters</span> <br>
+            <button v-on:click="REGBTN" class="mt-4 border-2 border-white rounded-md p-2 hover:drop-shadow-lg" id="btnReg">Register Account</button>
+            <div class="war">
+                <span class="text-gray-500 text-sm">THERE ARE NO WAYS TO CHANGE PASSWORD</span>
+            </div>
+            <div class="errors">
+
+            </div>    
+        </div>
     </div>
 </template>
