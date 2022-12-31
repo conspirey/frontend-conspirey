@@ -1,25 +1,45 @@
 <script setup lang="ts">
-import Register from "./auth/Register.vue"
-import axios, { AxiosResponse } from "axios"
-import data from "../data"
-import router from "../routes/routes"
-// let btnReg = document.getElementById("btnReg") as HTMLButtonElement
-function REGBTN(ev: MouseEvent) {
+    import axios, { AxiosResponse } from "axios"
+    import data from "../data"
+    import router from "../routes/routes"
+    import errMSG from "../errorMSG"
+    
+    function REGBTN(ev: MouseEvent) {
     let user = document.getElementById("userR") as HTMLInputElement,
         password = document.getElementById("passR") as HTMLInputElement
-    let res = axios.post(data.url + "/auth/register", {
+    let res = axios.post(data.url + "auth/register", {
         name: user.value,
         password: password.value
     })
-    
+    let errL = {
+        user: document.getElementById("userINVALID") as HTMLSpanElement,
+        pass: document.getElementById("passINVALID") as HTMLSpanElement,
+        reg: document.getElementById("regINVALID") as HTMLSpanElement,
+    }
+    let err = {
+        "1": errL.user,
+        "2": errL.pass,
+        "3": errL.reg,
+        "4": errL.reg,
+    }
     res.then((res: AxiosResponse) => {
         if(res.status == 200) {
+            router.push("/")
         } else {
+            let errRList = (res.data.error as string).split("_")
+            let errNum = errRList[errRList.length - 1]
 
+            let eleSp = (err as any)[errNum] as HTMLSpanElement
+            eleSp.textContent = res.data.error_message
         }
     })
+    res.catch((res) => {
+        console.log(res)
+    })
 }
+
 </script>
+
 
 <template>
     <div class="register">
@@ -29,6 +49,7 @@ function REGBTN(ev: MouseEvent) {
             </div>
 
             <br />
+            <span id="userINVALID" class="text-sm text-red-500 font-bold"></span>
             <input id="userR" class="
             form-control
             block
@@ -48,6 +69,7 @@ function REGBTN(ev: MouseEvent) {
             " type="text"  placeholder="Enter username..." />
             <span class="text-gray-500 text-sm">username has to be from 3-16 characters long, <br> can contain numbers, latin letters, _ symbol</span>
             <div class="di my-5"></div>
+            <span id="passINVALID" class="text-sm text-red-500 font-bold"></span>
             <input id="passR" class="
             form-control
             block
@@ -67,12 +89,11 @@ function REGBTN(ev: MouseEvent) {
             " type="password" placeholder="Enter password..." />
             <span class="text-gray-500 text-sm">password has to be from 8-32 characters</span> <br>
             <button v-on:click="REGBTN" class="mt-4 border-2 border-white rounded-md p-2 hover:drop-shadow-lg" id="btnReg">Register Account</button>
+            <span id="regINVALID" class="text-sm text-red-500 font-bold"></span>
             <div class="war">
                 <span class="text-gray-500 text-sm">THERE ARE NO WAYS TO CHANGE PASSWORD</span>
             </div>
-            <div class="errors">
-
-            </div>    
+ 
         </div>
     </div>
 </template>
