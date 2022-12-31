@@ -5,37 +5,41 @@
     import errMSG from "../errorMSG"
     
     function REGBTN(ev: MouseEvent) {
-    let user = document.getElementById("userR") as HTMLInputElement,
-        password = document.getElementById("passR") as HTMLInputElement
-    let res = axios.post(data.url + "auth/register", {
-        name: user.value,
-        password: password.value
-    })
-    let errL = {
-        user: document.getElementById("userINVALID") as HTMLSpanElement,
-        pass: document.getElementById("passINVALID") as HTMLSpanElement,
-        reg: document.getElementById("regINVALID") as HTMLSpanElement,
-    }
-    let err = {
-        "1": errL.user,
-        "2": errL.pass,
-        "3": errL.reg,
-        "4": errL.reg,
-    }
-    res.then((res: AxiosResponse) => {
-        if(res.status == 200) {
-            router.push("/")
-        } else {
-            let errRList = (res.data.error as string).split("_")
-            let errNum = errRList[errRList.length - 1]
-
-            let eleSp = (err as any)[errNum] as HTMLSpanElement
-            eleSp.textContent = res.data.error_message
+        let user = document.getElementById("userR") as HTMLInputElement,
+            password = document.getElementById("passR") as HTMLInputElement
+        let res1 = fetch(data.url + "auth/register", {
+            method: "POST",
+            body: JSON.stringify
+        })
+        let res = axios.post(data.url + "auth/register", {
+            name: user.value,
+            password: password.value
+        })
+        let errL = {
+            user: document.getElementById("userINVALID") as HTMLSpanElement,
+            pass: document.getElementById("passINVALID") as HTMLSpanElement,
+            reg: document.getElementById("regINVALID") as HTMLSpanElement,
         }
-    })
-    res.catch((res) => {
-        console.log(res)
-    })
+        let err = {
+            "1": errL.user,
+            "2": errL.pass,
+            "3": errL.reg,
+            "4": errL.reg,
+        }
+        res.then((res: AxiosResponse) => {
+            if(res.status == 200) {
+                router.push("/")
+            } else {
+                let errRList = (res.data.error as string).split("_")
+                let errNum = errRList[errRList.length - 1]
+
+                let eleSp = (err as any)[errNum] as HTMLSpanElement
+                eleSp.textContent = res.data.error_message
+        }
+        })
+        res.catch((res) => {
+            console.log(res.data)
+        })
 }
 
 </script>
