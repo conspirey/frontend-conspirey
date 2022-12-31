@@ -1,9 +1,23 @@
 <script setup lang="ts">
 import Register from "./auth/Register.vue"
-
+import axios, { AxiosResponse } from "axios"
+import data from "../data"
+import router from "../routes/routes"
 // let btnReg = document.getElementById("btnReg") as HTMLButtonElement
 function REGBTN(ev: MouseEvent) {
+    let user = document.getElementById("userR") as HTMLInputElement,
+        password = document.getElementById("passR") as HTMLInputElement
+    let res = axios.post(data.url + "/auth/register", {
+        name: user.value,
+        password: password.value
+    })
+    
+    res.then((res: AxiosResponse) => {
+        if(res.status == 200) {
+        } else {
 
+        }
+    })
 }
 </script>
 
@@ -15,7 +29,7 @@ function REGBTN(ev: MouseEvent) {
             </div>
 
             <br />
-            <input class="
+            <input id="userR" class="
             form-control
             block
             w-full
@@ -34,7 +48,7 @@ function REGBTN(ev: MouseEvent) {
             " type="text"  placeholder="Enter username..." />
             <span class="text-gray-500 text-sm">username has to be from 3-16 characters long, <br> can contain numbers, latin letters, _ symbol</span>
             <div class="di my-5"></div>
-            <input class="
+            <input id="passR" class="
             form-control
             block
             w-full
