@@ -95,13 +95,13 @@ export default {
         },
         async Rb() {
 
-            fetch("http://localhost:3200/test", {
+            fetch("http://localhost:3200/api/user", {
                 method: "GET",
                 credentials: "include",
                 
             }).then((res) => {
                 res.json().then((js) => {
-                    this.user = js
+                    this.user = js.name
                 })
             })
             
@@ -113,7 +113,7 @@ export default {
 <template>
     <div class="register">
         <button @click="RegBTN">test</button>
-        {{ JSON.stringify(user) }}
+        USERNAME: {{ user }}
         <button @click="Rb">test text</button>
             <div class="login border-2 p-4 rounded-lg">
             <div class="text">
