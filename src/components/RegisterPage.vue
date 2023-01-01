@@ -3,14 +3,24 @@
     import data from "../data"
     import router from "../routes/routes"
     import errMSG from "../errorMSG"
+import { def } from "@vue/shared"
     
-    function REGBTN(ev: MouseEvent) {
+    async function REGBTN(ev: MouseEvent) {
         let user = document.getElementById("userR") as HTMLInputElement,
             password = document.getElementById("passR") as HTMLInputElement
         let res1 = fetch(data.url + "auth/register", {
             method: "POST",
-            body: JSON.stringify
+            body: JSON.stringify({
+                name: user.value,
+                password: password.value
+            }),
+            credentials: "include",
+        }).then((res) => {
+            console.log(res.json)
+        }).catch((res) => {
+            console.log(res)
         })
+
         let res = axios.post(data.url + "auth/register", {
             name: user.value,
             password: password.value
@@ -44,9 +54,32 @@
 
 </script>
 
+<script lang="ts">
+export default {
+    methods: {
+        async RegBTN() {
+            let user = document.getElementById("userR") as HTMLInputElement,
+            password = document.getElementById("passR") as HTMLInputElement
+        let res1 = await  fetch(data.url + "auth/register", {
+            method: "POST",
+            body: JSON.stringify({
+                name: user.value,
+                password: password.value
+            }),
+            credentials: "include",
+        }).then((res) => {
+            console.log(res)
+        }).catch((res) => {
+            console.log(res)
+        })
 
+        }
+    }
+}
+</script>
 <template>
     <div class="register">
+        <button @click="RegBTN">test</button>
             <div class="login border-2 p-4 rounded-lg">
             <div class="text">
                 Register your Conspirey account
@@ -92,7 +125,7 @@
             focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
             " type="password" placeholder="Enter password..." />
             <span class="text-gray-500 text-sm">password has to be from 8-32 characters</span> <br>
-            <button v-on:click="REGBTN" class="mt-4 border-2 border-white rounded-md p-2 hover:drop-shadow-lg" id="btnReg">Register Account</button>
+            <button @click="REGBTN" class="mt-4 border-2 border-white rounded-md p-2 hover:drop-shadow-lg" id="btnReg">Register Account</button>
             <span id="regINVALID" class="text-sm text-red-500 font-bold"></span>
             <div class="war">
                 <span class="text-gray-500 text-sm">THERE ARE NO WAYS TO CHANGE PASSWORD</span>
