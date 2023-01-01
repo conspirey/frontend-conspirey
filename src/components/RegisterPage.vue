@@ -8,27 +8,27 @@ import { def } from "@vue/shared"
     async function REGBTN(ev: MouseEvent) {
         let user = document.getElementById("userR") as HTMLInputElement,
             password = document.getElementById("passR") as HTMLInputElement
-        let res1 = fetch(data.url + "auth/register", {
-            method: "POST",
-            body: JSON.stringify({
-                name: user.value,
-                password: password.value
-            }),
-            credentials: "include",
-        }).then((res) => {
-            if(res.status == 422) {
-                console.log(10101010)
-            }
-            res.json().then((val) => {
-                console.log(val)
-            })
-        }).catch((res) => {
-            res.json().then((val: any) => {
-                console.log(val)
-            })
-        })
+        // let res1 = fetch(data.url + "auth/register", {
+        //     method: "POST",
+        //     body: JSON.stringify({
+        //         name: user.value,
+        //         password: password.value
+        //     }),
+        //     credentials: "include",
+        // }).then((res) => {
+        //     if(res.status == 422) {
+        //         console.log(10101010)
+        //     }
+        //     res.json().then((val) => {
+        //         console.log(val)
+        //     })
+        // }).catch((res) => {
+        //     res.json().then((val: any) => {
+        //         console.log(val)
+        //     })
+        // })
 
-        let res = axios.post(data.url + "auth/register", {
+        let res = await axios.post(data.url + "auth/register", {
             name: user.value,
             password: password.value
         })
@@ -43,20 +43,21 @@ import { def } from "@vue/shared"
             "3": errL.reg,
             "4": errL.reg,
         }
-        res.then((res: AxiosResponse) => {
-            if(res.status == 200) {
-                router.push("/")
-            } else {
-                let errRList = (res.data.error as string).split("_")
-                let errNum = errRList[errRList.length - 1]
+        console.log(await res.data)
+        // res.then((res: AxiosResponse) => {
+        //     if(res.status == 200) {
+        //         router.push("/")
+        //     } else {
+        //         let errRList = (res.data.error as string).split("_")
+        //         let errNum = errRList[errRList.length - 1]
 
-                let eleSp = (err as any)[errNum] as HTMLSpanElement
-                eleSp.textContent = res.data.error_message
-        }
-        })
-        res.catch((res) => {
-            console.log(res.data)
-        })
+        //         let eleSp = (err as any)[errNum] as HTMLSpanElement
+        //         eleSp.textContent = res.data.error_message
+        // }
+        // })
+        // res.catch((res) => {
+        //     console.log(res.data)
+        // })
 }
 
 </script>
@@ -81,7 +82,6 @@ export default {
             credentials: "include",
         }).then((res) => {
             if(res.status == 422) {
-                console.log(10101010)
             }
             res.json().then((val) => {
                 console.log(val)
@@ -95,11 +95,17 @@ export default {
         },
         async Rb() {
 
-            let data = await axios.get("http://localhost:8080/test/", {
-                // withCredentials: true,
+            fetch("http://localhost:3200/test", {
+                method: "GET",
+                credentials: "include",
                 
+            }).then((res) => {
+                res.json().then((js) => {
+                    this.user = js
+                })
             })
-            this.user = await data.data
+            
+            
         }
     }
 }
