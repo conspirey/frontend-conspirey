@@ -16,9 +16,16 @@ import { def } from "@vue/shared"
             }),
             credentials: "include",
         }).then((res) => {
-            console.log(res.json)
+            if(res.status == 422) {
+                console.log(10101010)
+            }
+            res.json().then((val) => {
+                console.log(val)
+            })
         }).catch((res) => {
-            console.log(res)
+            res.json().then((val: any) => {
+                console.log(val)
+            })
         })
 
         let res = axios.post(data.url + "auth/register", {
@@ -56,11 +63,16 @@ import { def } from "@vue/shared"
 
 <script lang="ts">
 export default {
+    data() {
+        return {
+            user: null
+        }
+    },
     methods: {
         async RegBTN() {
             let user = document.getElementById("userR") as HTMLInputElement,
             password = document.getElementById("passR") as HTMLInputElement
-        let res1 = await  fetch(data.url + "auth/register", {
+        let res1 = fetch(data.url + "auth/register", {
             method: "POST",
             body: JSON.stringify({
                 name: user.value,
@@ -68,11 +80,26 @@ export default {
             }),
             credentials: "include",
         }).then((res) => {
-            console.log(res)
+            if(res.status == 422) {
+                console.log(10101010)
+            }
+            res.json().then((val) => {
+                console.log(val)
+            })
         }).catch((res) => {
-            console.log(res)
+            // res.json().then((val: any) => {
+            //     console.log(val)
+            // })
         })
 
+        },
+        async Rb() {
+
+            let data = await axios.get("http://localhost:8080/test/", {
+                // withCredentials: true,
+                
+            })
+            this.user = await data.data
         }
     }
 }
@@ -80,6 +107,8 @@ export default {
 <template>
     <div class="register">
         <button @click="RegBTN">test</button>
+        {{ JSON.stringify(user) }}
+        <button @click="Rb">test text</button>
             <div class="login border-2 p-4 rounded-lg">
             <div class="text">
                 Register your Conspirey account
