@@ -28,7 +28,7 @@ import { def } from "@vue/shared"
         //     })
         // })
 
-        let res = await axios.post(data.url + "auth/register/", {
+        let res = await axios.post(data.url + "auth/register", {
             name: user.value,
             password: password.value
         })
