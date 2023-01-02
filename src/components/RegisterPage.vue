@@ -28,7 +28,7 @@ import { def } from "@vue/shared"
         //     })
         // })
 
-        let res = await axios.post(data.url + "auth/register", {
+        let res = await axios.post(data.url + "auth/register/", {
             name: user.value,
             password: password.value
         })
@@ -73,7 +73,7 @@ export default {
         async RegBTN() {
             let user = document.getElementById("userR") as HTMLInputElement,
             password = document.getElementById("passR") as HTMLInputElement
-        let res1 = fetch(data.url + "auth/register", {
+        let res1 = fetch("http://localhost:3200/auth/register", {
             method: "POST",
             body: JSON.stringify({
                 name: user.value,
@@ -95,7 +95,7 @@ export default {
         },
         async Rb() {
 
-            fetch("http://localhost:3200/api/user", {
+            fetch("http://localhost:3200/test/set/", {
                 method: "GET",
                 credentials: "include",
                 
