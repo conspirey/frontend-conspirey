@@ -29,7 +29,7 @@ import { def } from "@vue/shared"
         // })
 
         fetch(data.url + "cookie", {}).then((res) => { res.text().then((str) => console.log(str)) })
-        let res = await axios.post(data.url + "auth/register/", {
+        let res = await axios.post(data.url + "auth/register", {
             name: user.value,
             password: password.value
         })
