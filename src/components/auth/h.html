@@ -1,0 +1,41 @@
+<script>
+    function post() {
+    fetch("http://localhost:3200/auth/register", {
+            method: "POST",
+            body: JSON.stringify({
+                name: "mrredo",
+                password: "efwefwe2323r3.,."
+            }),
+            credentials: "include",
+        }).then((res) => {
+            if(res.status == 422) {
+            }
+            res.json().then((val) => {
+                console.log(val)
+            })
+        }).catch((res) => {
+            // res.json().then((val: any) => {
+            //     console.log(val)
+            // })
+        })
+    }
+    function get() {
+        fetch("http://localhost:3200/api/user", {
+            method: "GET",
+
+            credentials: "include",
+        }).then((res) => {
+            if(res.status == 422) {
+            }
+            res.json().then((val) => {
+                console.log(val)
+            })
+        }).catch((res) => {
+            // res.json().then((val: any) => {
+            //     console.log(val)
+            // })
+        })
+    }
+</script>
+<button onclick="post()">POST</button>
+<button onclick="get()">GET</button>
