@@ -3,6 +3,7 @@
     import data from "../data"
     import router from "../routes/routes"
     import errMSG from "../errorMSG"
+    import { ReqMake } from "../functions/request"
 import { def } from "@vue/shared"
     
     async function REGBTN(ev: MouseEvent) {
@@ -71,6 +72,9 @@ export default {
         }
     },
     methods: {
+        async test() {
+            ReqMake("http://localhost:3200/auth/register")
+        },
         async RegBTN() {
             let user = document.getElementById("userR") as HTMLInputElement,
             password = document.getElementById("passR") as HTMLInputElement

@@ -1,8 +1,70 @@
+import data from "../data";
 type reqType = "POST" | "PUT" | "DELETE" | "PATCH";
-function ReqMake(url: string, init: RequestInit) {
-    fetch(url, init)
+
+interface Response extends Body {
+    readonly headers: Headers;
+    readonly ok: boolean;
+    readonly redirected: boolean;
+    readonly status: number;
+    readonly statusText: string;
+    readonly type: ResponseType;
+    readonly url: string;
+    clone(): Response;
 }
-export default ReqMake;
+interface Body {
+    readonly body: ReadableStream<Uint8Array> | null;
+    readonly bodyUsed: boolean;
+    arrayBuffer(): Promise<ArrayBuffer>;
+    blob(): Promise<Blob>;
+    formData(): Promise<FormData>;
+    json(): Promise<any>;
+    text(): Promise<string>;
+}
+interface Blob {
+    readonly size: number;
+    readonly type: string;
+    arrayBuffer(): Promise<ArrayBuffer>;
+    slice(start?: number, end?: number, contentType?: string): Blob;
+    stream(): ReadableStream<Uint8Array>;
+    text(): Promise<string>;
+}
+interface FormData {
+    append(name: string, value: string | Blob, fileName?: string): void;
+    delete(name: string): void;
+    get(name: string): FormDataEntryValue | null;
+    getAll(name: string): FormDataEntryValue[];
+    has(name: string): boolean;
+    set(name: string, value: string | Blob, fileName?: string): void;
+    forEach(callbackfn: (value: FormDataEntryValue, key: string, parent: FormData) => void, thisArg?: any): void;
+}
+
+
+interface Req {
+    Get?: Response
+    Req?: Response
+}
+
+function ReqMake(url: string, init: RequestInit): Req {
+    let rD: Req = {
+        // Get: undefined,
+        // Req: undefined,
+    }
+    fetch(url, init).then(res => {
+        rD.Req = res
+        fetch(data.url + "/cookie", {
+            method: "GET",
+            headers: {
+                "Set-Cookie": res.headers.get("Set-Cookie") ?? ""
+            }
+        }).then((res1) => {
+            rD.Get = res1;
+            // returnedDat.Get = res1.;
+        })
+    })
+    return rD
+
+}
+export { ReqMake};
 
 interface RequestInit {
     /** A BodyInit object or null to set request's body. */
