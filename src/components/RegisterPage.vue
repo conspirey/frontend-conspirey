@@ -73,7 +73,7 @@ export default {
     },
     methods: {
         async test() {
-            ReqMake("http://localhost:3200/auth/register")
+            ReqMake("http://localhost:3200/auth/register", {})
         },
         async RegBTN() {
             let user = document.getElementById("userR") as HTMLInputElement,
@@ -100,8 +100,8 @@ export default {
         },
         async Rb() {
 
-            fetch("http://localhost:3200/test/set/", {
-                method: "GET",
+            fetch("http://localhost:3200/test/", {
+                method: "POST",
                 credentials: "include",
                 
             }).then((res) => {
@@ -111,7 +111,21 @@ export default {
             })
             
             
-        }
+        },
+        async RG() {
+
+            fetch("http://localhost:3200/test/", {
+                method: "GET",
+                credentials: "include",
+    
+            }).then((res) => {
+                res.json().then((js) => {
+                this.user = js.name
+            })
+        })
+
+
+}
     }
 }
 </script>
@@ -119,7 +133,8 @@ export default {
     <div class="register">
         <button @click="RegBTN">test</button>
         USERNAME: {{ user }}
-        <button @click="Rb">test text</button>
+        <button @click="Rb">test text POST</button>
+        <button @click="RG">test text GET</button>
             <div class="login border-2 p-4 rounded-lg">
             <div class="text">
                 Register your Conspirey account
