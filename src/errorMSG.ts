@@ -1,3 +1,4 @@
+//login/register 1 - usernames, 2 passwords, 3,4 - user/server related problems like dupe ip or failed encrypting pass
 export default {
     register: {
         "1": {
@@ -18,5 +19,18 @@ export default {
         
        
         
+    },
+    login: {
+        "1": {
+            invalid_name: "Name is invalid or doesn't exist"
+        },
+        "2": {
+            empty_password: "Password is empty",
+            incorrect_password: "Password is incorrect"
+        },
+        "3": {},
+        "4": {
+            depcr_failed: "Server failed decrypting password"
+        },
     }
 }

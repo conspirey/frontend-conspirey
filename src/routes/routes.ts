@@ -1,8 +1,8 @@
-import {createRouter, createWebHashHistory} from "vue-router"
+import {createRouter, createWebHashHistory, createWebHistory} from "vue-router"
 import LoginPage from "../components/LoginPage.vue"
 import RegisterPage from "../components/RegisterPage.vue"
 import AppVue from "../components/Main.vue";
-const route = createRouter({    
+const route = createRouter({
     routes: [
         {  
             path: "/", 
@@ -21,7 +21,7 @@ const route = createRouter({
         },
         
     ],
-    history: createWebHashHistory("/my-app"),
+    history: createWebHistory(),
     
 })
 
