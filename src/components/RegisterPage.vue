@@ -145,7 +145,7 @@ export default {
 </script>
 <template>
     <div class="register">
-
+            <a href="/login">Login</a>
             <div class="login border-2 p-4 rounded-lg">
             <div class="text font-bold text-lg ">
                 Register your Conspirey account
