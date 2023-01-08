@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import HelloWorld from './HelloWorld.vue'
+import NavBarVue from './NavBar.vue';
 </script>
 
 <template>
-  
+  <div>
+  <NavBarVue />
   <HelloWorld />
+</div>
 </template>
 
 <style scoped>

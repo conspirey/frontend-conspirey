@@ -5,62 +5,7 @@
     import errMSG from "../errorMSG"
     import { ReqMake } from "../functions/request"
 import { def } from "@vue/shared"
-    
-//     async function REGBTN(ev: MouseEvent) {
-//         let user = document.getElementById("userR") as HTMLInputElement,
-//             password = document.getElementById("passR") as HTMLInputElement
-//         // let res1 = fetch(data.url + "auth/register", {
-//         //     method: "POST",
-//         //     body: JSON.stringify({
-//         //         name: user.value,
-//         //         password: password.value
-//         //     }),
-//         //     credentials: "include",
-//         // }).then((res) => {
-//         //     if(res.status == 422) {
-//         //         console.log(10101010)
-//         //     }
-//         //     res.json().then((val) => {
-//         //         console.log(val)
-//         //     })
-//         // }).catch((res) => {
-//         //     res.json().then((val: any) => {
-//         //         console.log(val)
-//         //     })
-//         // })
 
-//         fetch(data.url + "cookie", {}).then((res) => { res.text().then((str) => console.log(str)) })
-//         let res = await axios.post(data.url + "auth/register", {
-//             name: user.value,
-//             password: password.value
-//         })
-//         let errL = {
-//             user: document.getElementById("userINVALID") as HTMLSpanElement,
-//             pass: document.getElementById("passINVALID") as HTMLSpanElement,
-//             reg: document.getElementById("regINVALID") as HTMLSpanElement,
-//         }
-//         let err = {
-//             "1": errL.user,
-//             "2": errL.pass,
-//             "3": errL.reg,
-//             "4": errL.reg,
-//         }
-//         console.log(await res.data)
-//         // res.then((res: AxiosResponse) => {
-//         //     if(res.status == 200) {
-//         //         router.push("/")
-//         //     } else {
-//         //         let errRList = (res.data.error as string).split("_")
-//         //         let errNum = errRList[errRList.length - 1]
-
-//         //         let eleSp = (err as any)[errNum] as HTMLSpanElement
-//         //         eleSp.textContent = res.data.error_message
-//         // }
-//         // })
-//         // res.catch((res) => {
-//         //     console.log(res.data)
-//         // })
-// }
 
 </script>
 
