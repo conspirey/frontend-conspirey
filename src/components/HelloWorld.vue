@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { defineComponent, ref } from 'vue'
 import io from 'socket.io-client'
+import data from '../data';
 
 const socket = io.connect('ws://localhost:3200', {transports: ["websocket"],   withCredentials: true})
 // socket.on('echo', (data: any) => {
@@ -31,6 +32,17 @@ socket.on("echo", (data: any) => {
 
 const count = ref(0)
 
+</script>
+<script lang="ts">
+export default {
+  mounted() {
+    fetch(data.url + "api/user", { credentials: "include"}).then(res => {
+      if(!(res.status >= 200 && res.status <= 299)) {
+        this.$router.push("/login")
+      }
+    })
+  }
+}
 </script>
 
 <template>

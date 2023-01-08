@@ -34,7 +34,7 @@ export default {
     async RegBTN() {
       let user = document.getElementById("userR") as HTMLInputElement,
           password = document.getElementById("passR") as HTMLInputElement
-      let res1 = fetch("http://localhost:3200/auth/register", {
+      fetch("http://localhost:3200/auth/login", {
         method: "POST",
         body: JSON.stringify({
           name: user.value,
@@ -56,7 +56,6 @@ export default {
             "3": errL.reg,
             "4": errL.reg,
           }
-          errL.user.textContent = "TEST"
           for (const datErr in errL) {
             errL[(datErr as strDataErr)].textContent = ""
           }
@@ -66,7 +65,7 @@ export default {
             let errRList = (val.error as string).split("_")
             let errNum = (errRList[errRList.length - 1]).split("")[0]
             let ErrText = val.error_message.split(":")[0]
-            console.log(errNum)
+            console.log(val.error)
             let eleSp = (err as any)[errNum] as HTMLSpanElement
 
             eleSp.textContent = ErrText

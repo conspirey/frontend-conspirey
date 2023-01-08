@@ -55,7 +55,6 @@ export default {
                     "3": errL.reg,
                     "4": errL.reg,
                 }
-                errL.user.textContent = "TEST"
                 for (const datErr in errL) {
                     errL[(datErr as strDataErr)].textContent = ""
                 }
