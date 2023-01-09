@@ -52,7 +52,7 @@ export default {
 <template>
 <nav class="border-2 rounded-md p-4 w-[80vw] mx-4 flex text-center  ">
     <div class="main font-bold text-lg">
-        Conspirey 
+        <a href="/">Conspirey</a> 
     </div>
     <!-- <button @click="getUserData()">DATA</button> -->
     <div v-if="logged" class="mx-2 text-lg"> 

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { defineComponent, ref } from 'vue'
-import io from 'socket.io-client'
+import * as ioS from 'socket.io-client'
 import data from '../data';
-
+const io = ioS as any
 const socket = io.connect('ws://localhost:3200', {transports: ["websocket"],   withCredentials: true})
 // socket.on('echo', (data: any) => {
 //   console.log(data);
@@ -24,9 +24,10 @@ socket.on("echo", (data: any) => {
   const field = document.getElementById("echoinp") as HTMLInputElement
   const list = document.getElementById("echolist") as HTMLUListElement
   const text: string = data.text;
+  const name: string = data.name;
   let ele = document.createElement("li")
   list.appendChild(ele)
-  ele.textContent = text;
+  ele.textContent = `${name}: ${text}`;
   
 })
 
@@ -52,6 +53,7 @@ export default {
     <br />
     <input type="text" value="hello" id="echoinp" />
     <br />
+    <div class="par grid place-items-center">
     <div class="d h-64 my-5 w-72 border-4 rounded-md">
       <h3>Chat with other conspireys</h3>
     <hr />
@@ -65,6 +67,7 @@ export default {
       </div>
     </div>
   </div>
+</div>
 </template>
 
 <style scoped>
