@@ -54,13 +54,13 @@ export default {
     <input type="text" value="hello" id="echoinp" />
     <br />
     <div class="par grid place-items-center">
-    <div class="d h-64 my-5 w-72 border-4 rounded-md">
+    <div class="d my-5 sm:w-[30rem] lg:w-[50rem] md:w-[40rem] border-4 rounded-md">
       <h3>Chat with other conspireys</h3>
     <hr />
-    <div class=" overflow-y-scroll h-[13.94rem] ">
+    <div class="overflow-y-scroll h-[20rem] ">
 
 
-      <div class="ldi">
+      <div class="ldi text-left m-2 ml-4">
         <ul  id="echolist"> </ul>
       </div>
 
