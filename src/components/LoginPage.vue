@@ -22,7 +22,6 @@ export default {
     fetch(data.url + "api/user", { credentials: "include"}).then((res) => {
 
       if(res.status >= 200 && res.status <= 299) {
-        console.log(res.status)
         this.$router.push("/")
       }
     })

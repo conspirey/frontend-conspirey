@@ -11,14 +11,17 @@ const btn = document.getElementById("echobtn") as HTMLButtonElement
 
 function btnOnclick(ev: MouseEvent) {
   const field = document.getElementById("echoinp") as HTMLInputElement
-  const list = document.getElementById("echolist") as HTMLUListElement
   socket.emit("echo", { text: field?.value }, function(response: any) {
-    // const text: string = response.text;
-    // let ele = document.createElement("li")
-    // list.appendChild(ele)
-    // ele.textContent = text;
-  
   })
+}
+
+function EnterKey(ev: KeyboardEvent) {
+  console.log(ev.key)
+  if(ev.key == "Enter") {
+  const field = document.getElementById("echoinp") as HTMLInputElement
+  socket.emit("echo", { text: field?.value }, function(response: any) {
+  })
+}
 }
 socket.on("echo", (data: any) => {
   const field = document.getElementById("echoinp") as HTMLInputElement
@@ -41,6 +44,8 @@ export default {
       if(!(res.status >= 200 && res.status <= 299)) {
         this.$router.push("/login")
       }
+    }).catch((reason) => {
+      this.$router.push("/login")
     })
   }
 }
@@ -51,7 +56,7 @@ export default {
     <br />
     <button v-on:click="btnOnclick"  id="echobtn">echo text</button>
     <br />
-    <input type="text" value="hello" id="echoinp" />
+    <input type="text" value="hello" id="echoinp" v-on:keyup="EnterKey" />
     <br />
     <div class="par grid place-items-center">
     <div class="d my-5 sm:w-[30rem] lg:w-[50rem] md:w-[40rem] border-4 rounded-md">
