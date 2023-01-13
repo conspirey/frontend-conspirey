@@ -2,6 +2,7 @@
 import { defineComponent, ref } from 'vue'
 import * as ioS from 'socket.io-client'
 import data from '../data';
+import Popup from './elements/popup.vue';
 const io = ioS as any
 const socket = io.connect('ws://localhost:3200', {transports: ["websocket"],   withCredentials: true})
 // socket.on('echo', (data: any) => {
@@ -39,15 +40,16 @@ const count = ref(0)
 </script>
 <script lang="ts">
 export default {
-  mounted() {
-    fetch(data.url + "api/user", { credentials: "include"}).then(res => {
-      if(!(res.status >= 200 && res.status <= 299)) {
-        this.$router.push("/login")
-      }
-    }).catch((reason) => {
-      this.$router.push("/login")
-    })
-  }
+    mounted() {
+        fetch(data.url + "api/user", { credentials: "include" }).then(res => {
+            if (!(res.status >= 200 && res.status <= 299)) {
+                this.$router.push("/login");
+            }
+        }).catch((reason) => {
+            this.$router.push("/login");
+        });
+    },
+    components: { Popup }
 }
 </script>
 
@@ -72,6 +74,7 @@ export default {
       </div>
     </div>
   </div>
+  <Popup>hello</Popup>
 </div>
 </template>
 
