@@ -35,6 +35,7 @@ export default {
                     console.log(err)
                 })
             })
+            
         },
         Logout() {
             fetch(data.url + "auth/logout", {
@@ -45,6 +46,7 @@ export default {
                     this.logged = false
                 }
             })
+            if(this.logged) this.$router.push("/login")
         },
     },
 }

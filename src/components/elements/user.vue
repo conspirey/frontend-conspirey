@@ -2,19 +2,18 @@
 //imports
 import Swal from 'sweetalert2';
 defineProps({
-    "b-style": String,
-    "b-text": String,
-    "title": String
-    
+    "bstyle": String,
 })
-defineExpose()
 </script>
 <script lang="ts">
 export default {
-    name: "Popup element",
+    name: "User element",
+    mounted() {
+        document.getElementById("ucard")?.classList.add(this.bstyle)
+    },
     methods: {
-        onclick() {
-           Swal.fire(this.title, ) 
+        
+        fetchUserData() {
 
         }
     },
@@ -25,9 +24,7 @@ export default {
 </script> 
 <template>
     <div class="pop">
-        <div> <!-- dd-->
-            {{ $refs }}
-        </div>
+        <button id="ucard" >UserCard</button>
     </div>
 </template>
 
