@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@imengyu/vue3-context-menu": "^1.1.10",
     "axios": "^1.2.2",
     "socket.io-client": "^2.5.0",
     "sweetalert2": "^11.7.0",

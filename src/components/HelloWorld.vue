@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, component} from 'vue'
 import * as ioS from 'socket.io-client'
 import data from '../data';
-import Popup from './elements/user.vue';
+import UserCard from './elements/usermsg.vue';
 const io = ioS as any
 const socket = io.connect('ws://localhost:3200', {transports: ["websocket"],   withCredentials: true})
 // socket.on('echo', (data: any) => {
@@ -31,6 +31,9 @@ socket.on("echo", (data: any) => {
   const name: string = data.name;
   let ele = document.createElement("li")
   list.appendChild(ele)
+  let components = component("")
+  let card = new UserCard()
+
   ele.textContent = `${name}: ${text}`;
   
 })
@@ -49,7 +52,6 @@ export default {
             this.$router.push("/login");
         });
     },
-    components: { Popup }
 }
 </script>
 

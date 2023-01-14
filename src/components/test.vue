@@ -4,6 +4,6 @@ import UserCard from "./elements/user.vue"
 
 <template>
     <div class="pop">
-        <UserCard bstyle="text-green-500" />
+        <UserCard bstyle="text-green-500" btext="name" />
     </div>
 </template>
