@@ -3,44 +3,45 @@ import { defineComponent, ref} from 'vue'
 import * as ioS from 'socket.io-client'
 import data from '../data';
 import UserCard from './elements/usermsg.vue';
-const io = ioS as any
-const socket = io.connect('ws://localhost:3200', {transports: ["websocket"],   withCredentials: true})
+import {User, Message} from "./type"
+
+
 // socket.on('echo', (data: any) => {
 //   console.log(data);
 // });
 const btn = document.getElementById("echobtn") as HTMLButtonElement
 
-function btnOnclick(ev: MouseEvent) {
-  const field = document.getElementById("echoinp") as HTMLInputElement
-  socket.emit("echo", { text: field?.value }, function(response: any) {
-  })
-}
+// function btnOnclick1(ev: MouseEvent) {
+//   const field = document.getElementById("echoinp") as HTMLInputElement
+//   socket.emit("echo", { text: field?.value }, function(response: any) {
+//   })
+// }
 
-function EnterKey(ev: KeyboardEvent) {
-  console.log(ev.key)
-  if(ev.key == "Enter") {
-  const field = document.getElementById("echoinp") as HTMLInputElement
-  socket.emit("echo", { text: field?.value }, function(response: any) {
-  })
-}
-}
-socket.on("echo", (data: any) => {
-  const field = document.getElementById("echoinp") as HTMLInputElement
-  const list = document.getElementById("echolist") as HTMLUListElement
-  const text: string = data.text;
-  const name: string = data.name;
-  let ele = document.createElement("li")
-  list.appendChild(ele)
-  
-  ele.textContent = `${name}: ${text}`;
-  
-})
+// function EnterKey(ev: KeyboardEvent) {
+//   console.log(ev.key)
+//   if(ev.key == "Enter") {
+//   const field = document.getElementById("echoinp") as HTMLInputElement
+//   socket.emit("echo", { text: field?.value }, function(response: any) {
+//   })
+// }
+// }
+
 
 const count = ref(0)
 
 </script>
 <script lang="ts">
+
 export default {
+  data() {
+    const io = ioS as any
+    const an: any = null
+    return {
+      messages: [] as any,
+      socket: null as any,
+      io: io,
+    }
+  },
     mounted() {
         fetch(data.url + "api/user", { credentials: "include" }).then(res => {
             if (!(res.status >= 200 && res.status <= 299)) {
@@ -49,6 +50,34 @@ export default {
         }).catch((reason) => {
             this.$router.push("/login");
         });
+        const socket = this.io.connect('ws://localhost:3200', {transports: ["websocket"],   withCredentials: true})
+        this.socket = socket
+        socket.on("echo", (data: any) => {
+          const field = document.getElementById("echoinp") as HTMLInputElement
+          const list = document.getElementById("echolist") as HTMLUListElement
+          const text: string = data.text;
+          const name: string = data.name;
+          this.messages.push({name: name, text: text})
+          // let ele = document.createElement("li")
+          // list.appendChild(ele)
+  
+          // ele.textContent = `${name}: ${text}`;
+  
+          })
+    },
+    methods: {
+      btnOnclick(ev: MouseEvent) {
+        const field = document.getElementById("echoinp") as HTMLInputElement
+        this.socket.emit("echo", { text: field?.value }, function(response: any) {})
+      },
+      EnterKey(ev: KeyboardEvent) {
+        if(ev.key == "Enter") {
+          const field = document.getElementById("echoinp") as HTMLInputElement
+          this.socket.emit("echo", { text: field?.value }, function(response: any) {})
+        }
+      }
+
+
     },
 }
 </script>
@@ -68,7 +97,10 @@ export default {
 
 
       <div class="ldi text-left m-2 ml-4">
-        <ul  id="echolist"> </ul>
+        <ul v-for="{name, text} in messages">
+        <li>{{ name }}: {{ text }}</li>
+        </ul>
+        <ul  id="echolist"></ul>
       </div>
 
       </div>
