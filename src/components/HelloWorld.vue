@@ -26,6 +26,25 @@ const btn = document.getElementById("echobtn") as HTMLButtonElement
 // }
 // }
 
+// function EnterKey(ev: KeyboardEvent) {
+//   console.log(ev.key)
+//   if(ev.key == "Enter") {
+//   const field = document.getElementById("echoinp") as HTMLInputElement
+//   socket.emit("echo", { text: field?.value }, function(response: any) {
+//   })
+// }
+// }
+// socket.on("echo", (data: any) => {
+//   const field = document.getElementById("echoinp") as HTMLInputElement
+//   const list = document.getElementById("echolist") as HTMLUListElement
+//   const text: string = data.text;
+//   const name: string = data.user.name;
+//   let ele = document.createElement("li")
+//   list.appendChild(ele)
+  
+//   ele.textContent = `${name}: ${text}`;
+  
+// })
 
 const count = ref(0)
 
