@@ -75,7 +75,7 @@ export default {
           const field = document.getElementById("echoinp") as HTMLInputElement
           const list = document.getElementById("echolist") as HTMLUListElement
           const text: string = data.text;
-          const name: string = data.name;
+          const name: string = data.user.name;
           this.messages.push({name: name, text: text})
           // let ele = document.createElement("li")
           // list.appendChild(ele)
