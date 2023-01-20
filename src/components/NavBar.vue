@@ -52,7 +52,7 @@ export default {
 }
 </script>
 <template>
-<nav class="border-2 rounded-md p-4 w-[80vw] mx-4 flex text-center  ">
+<nav class="border-2 rounded-md p-4 w-[70vw] flex text-center  ">
     <div class="main font-bold text-lg">
         <a href="/">Conspirey</a> 
     </div>
