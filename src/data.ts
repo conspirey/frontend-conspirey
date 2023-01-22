@@ -1,3 +1,3 @@
 export default {
-    url: "https://preston-blow-asthma-di.trycloudflare.com/"//"http://localhost:3200/"
+    url: "https://bath-ice-samples-ea.trycloudflare.com/"//"http://localhost:3200/"
 }

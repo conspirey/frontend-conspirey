@@ -74,6 +74,9 @@ export default {
         console.log('ws://' + url.replace("https://", "").replace("http://","") + "/socket.io/")
         const socket = this.io.connect('ws://' + url.replace("https://", "").replace("http://","") + "/socket.io/", {transports: ["websocket"],   withCredentials: true})
         this.socket = socket
+        socket.on("connect_error", (err: any) => {
+          console.log(`connect_error due to ${err.message}`);
+        });
         socket.on("echo", (data: any) => {
           const field = document.getElementById("echoinp") as HTMLInputElement
           const list = document.getElementById("echolist") as HTMLUListElement
