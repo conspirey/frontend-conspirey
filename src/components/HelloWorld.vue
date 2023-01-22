@@ -69,7 +69,10 @@ export default {
         }).catch((reason) => {
             this.$router.push("/login");
         });
-        const socket = this.io.connect('ws://localhost:3200', {transports: ["websocket"],   withCredentials: true})
+        let url: string = data.url
+        url = url.slice(0, -1); 
+        console.log('ws://' + url.replace("https://", "").replace("http://","") + "/socket.io/")
+        const socket = this.io.connect('ws://' + url.replace("https://", "").replace("http://","") + "/socket.io/", {transports: ["websocket"],   withCredentials: true})
         this.socket = socket
         socket.on("echo", (data: any) => {
           const field = document.getElementById("echoinp") as HTMLInputElement
@@ -109,7 +112,7 @@ export default {
     <input type="text" value="hello" id="echoinp" v-on:keyup="EnterKey" />
     <br />
     <div class="par grid place-items-center">
-    <div class="d my-5 sm:w-[30rem] lg:w-[50rem] md:w-[40rem] border-4 rounded-md">
+    <div class="d my-5 w-[25rem] sm:w-[35rem] lg:w-[50rem] md:w-[40rem] border-4 rounded-md">
       <h3>Chat with other conspireys</h3>
     <hr />
     <div class="overflow-y-scroll h-[20rem] ">

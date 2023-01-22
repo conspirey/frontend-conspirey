@@ -33,7 +33,7 @@ export default {
         async RegBTN() {
             let user = document.getElementById("userR") as HTMLInputElement,
             password = document.getElementById("passR") as HTMLInputElement
-        let res1 = fetch("http://localhost:3200/auth/register", {
+        let res1 = fetch(data.url +"auth/register", {
             method: "POST",
             body: JSON.stringify({
                 name: user.value,
