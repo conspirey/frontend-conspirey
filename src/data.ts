@@ -1,4 +1,4 @@
 export default {
-     url: "https://head-appearance-cycles-rs.trycloudflare.com/"
+     url: "https://extremely-navy-ballot-organised.trycloudflare.com/"
     // url: "http://localhost:3200/"
 }
