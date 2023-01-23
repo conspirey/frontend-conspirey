@@ -1,3 +1,4 @@
 export default {
-    url: "https://bath-ice-samples-ea.trycloudflare.com/"//"http://localhost:3200/"
+     url: "https://head-appearance-cycles-rs.trycloudflare.com/"
+    // url: "http://localhost:3200/"
 }
