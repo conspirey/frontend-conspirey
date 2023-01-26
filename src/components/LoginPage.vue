@@ -31,6 +31,8 @@ export default {
       ReqMake("http://localhost:3200/auth/register", {})
     },
     async RegBTN() {
+      let logbtn = document.getElementById("btnReg") as HTMLButtonElement
+      logbtn.disabled = true
       let user = document.getElementById("userR") as HTMLInputElement,
           password = document.getElementById("passR") as HTMLInputElement
       fetch(data.url + "auth/login", {
@@ -70,6 +72,7 @@ export default {
             eleSp.textContent = ErrText
 
           }
+         
         })
 
 
@@ -77,6 +80,8 @@ export default {
         // res.json().then((val: any) => {
         //     console.log(val)
         // })
+      }).catch(() => {
+        logbtn.disabled = false
       })
 
     }
