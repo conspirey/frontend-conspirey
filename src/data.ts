@@ -1,4 +1,4 @@
 export default {
-     url: "http://conspirey.xyz/"
-    // url: "http://localhost:3623/"
+    //  url: "https://conspirey.xyz/"
+    url: "https://localhost:3100/"
 }
