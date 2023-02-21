@@ -18,7 +18,7 @@ export default {
         }
     },
     mounted() {
-        fetch(data.url + "api/user", { credentials: "include"}).then((res) => {
+        fetch(location.origin + "/api/user", { credentials: "include"}).then((res) => {
             
             if(res.status >= 200 && res.status <= 299) {
                 console.log(res.status)
@@ -33,7 +33,7 @@ export default {
         async RegBTN() {
             let user = document.getElementById("userR") as HTMLInputElement,
             password = document.getElementById("passR") as HTMLInputElement
-        let res1 = fetch(data.url +"auth/register", {
+        let res1 = fetch(location.origin +"/auth/register", {
             method: "POST",
             body: JSON.stringify({
                 name: user.value,

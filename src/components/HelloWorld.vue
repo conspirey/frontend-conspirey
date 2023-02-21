@@ -62,17 +62,17 @@ export default {
     }
   },
     mounted() {
-        fetch(data.url + "api/user", { credentials: "include" }).then(res => {
+
+      
+        fetch(location.origin + "/api/user", { credentials: "include" }).then(res => {
             if (!(res.status >= 200 && res.status <= 299)) {
                 this.$router.push("/login");
             }
         }).catch((reason) => {
             this.$router.push("/login");
         });
-        let url: string = data.url
-        url = url.slice(0, -1); 
-        console.log( url)
-        const socket = this.io.connect(url/*.replace("https://", "").replace("http://","")/ + "/socket.io/"*/, {transports: ["websocket"],   withCredentials: true})
+
+        const socket = this.io.connect(location.origin+"/"/*.replace("https://", "").replace("http://","")/ + "/socket.io/"*/, {transports: ["websocket"],   withCredentials: true})
         this.socket = socket
         socket.on("connect_error", (err: any) => {
           console.log(`connect_error due to ${err.message}`);

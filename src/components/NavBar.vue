@@ -21,7 +21,7 @@ export default {
 
         
         getUserData() {
-            fetch(data.url + "api/user", {
+            fetch(location.origin + "/api/user", {
                 method: "GET",
                 credentials: "include",
             }).then((res) => {
@@ -38,7 +38,7 @@ export default {
             
         },
         Logout() {
-            fetch(data.url + "auth/logout", {
+            fetch(location.origin + "/auth/logout", {
                 method: "POST",
                 credentials: "include",
             }).then((res) => {

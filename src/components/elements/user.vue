@@ -22,7 +22,7 @@ export default {
     },
     methods: {
         async ShowMenu() {
-            await this.fetchUserData()
+            await this.UserData()
             Swal.fire({
                 title: "User Info",
                 html: this.user.id != ""? `${this.user.name} ${this.user.id}`: `Failed to fetch`
@@ -30,7 +30,7 @@ export default {
         },
 
         async fetchUserData() {
-            let response = await fetch(data.url + "api/user", {credentials: "include"})
+            let response = await fetch(location.origin + "/api/user", {credentials: "include"})
             let json = await response.json()
             this.user = json
 
