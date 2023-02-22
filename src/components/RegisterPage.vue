@@ -18,7 +18,7 @@ export default {
         }
     },
     mounted() {
-        fetch(location.origin + "/api/user", { credentials: "include"}).then((res) => {
+        fetch((location.origin.includes("5")? location.protocol +"//localhost:3100" : location.origin) + "/api/user", { credentials: "include"}).then((res) => {
             
             if(res.status >= 200 && res.status <= 299) {
                 console.log(res.status)
@@ -33,7 +33,7 @@ export default {
         async RegBTN() {
             let user = document.getElementById("userR") as HTMLInputElement,
             password = document.getElementById("passR") as HTMLInputElement
-        let res1 = fetch(location.origin +"/auth/register", {
+        let res1 = fetch((location.origin.includes("5")? location.protocol +"//localhost:3100" : location.origin) +"/auth/register", {
             method: "POST",
             body: JSON.stringify({
                 name: user.value,

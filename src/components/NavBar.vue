@@ -21,7 +21,7 @@ export default {
 
         
         getUserData() {
-            fetch(location.origin + "/api/user", {
+            fetch((location.origin.includes("5")? location.protocol +"//localhost:3100" : location.origin) + "/api/user", {
                 method: "GET",
                 credentials: "include",
             }).then((res) => {
@@ -38,7 +38,7 @@ export default {
             
         },
         Logout() {
-            fetch(location.origin + "/auth/logout", {
+            fetch((location.origin.includes("5")? location.protocol +"//localhost:3100" : location.origin) + "/auth/logout", {
                 method: "POST",
                 credentials: "include",
             }).then((res) => {

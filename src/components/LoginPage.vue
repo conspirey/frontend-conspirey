@@ -19,7 +19,7 @@ export default {
     }
   },
   mounted() {
-    fetch(location.origin + "/api/user", { credentials: "include"}).then((res) => {
+    fetch((location.origin.includes("5")? location.protocol +"//localhost:3100" : location.origin) + "/api/user", { credentials: "include"}).then((res) => {
 
       if(res.status >= 200 && res.status <= 299) {
         this.$router.push("/")
@@ -35,7 +35,7 @@ export default {
       logbtn.disabled = true
       let user = document.getElementById("userR") as HTMLInputElement,
           password = document.getElementById("passR") as HTMLInputElement
-      fetch(location.origin + "/auth/login", {
+      fetch((location.origin.includes("5")? location.protocol +"//localhost:3100" : location.origin) + "/auth/login", {
         method: "POST",
         body: JSON.stringify({
           name: user.value,

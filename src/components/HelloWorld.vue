@@ -64,7 +64,7 @@ export default {
     mounted() {
 
       
-        fetch(location.origin + "/api/user", { credentials: "include" }).then(res => {
+        fetch((location.origin.includes("5")? location.protocol +"//localhost:3100" : location.origin) + "/api/user", { credentials: "include" }).then(res => {
             if (!(res.status >= 200 && res.status <= 299)) {
                 this.$router.push("/login");
             }
@@ -72,7 +72,7 @@ export default {
             this.$router.push("/login");
         });
 
-        const socket = this.io.connect(location.origin+"/"/*.replace("https://", "").replace("http://","")/ + "/socket.io/"*/, {transports: ["websocket"],   withCredentials: true})
+        const socket = this.io.connect((location.origin.includes("5")? location.protocol +"//localhost:3100" : location.origin) +"/"/*.replace("https://", "").replace("http://","")/ + "/socket.io/"*/, {transports: ["websocket"],   withCredentials: true})
         this.socket = socket
         socket.on("connect_error", (err: any) => {
           console.log(`connect_error due to ${err.message}`);
