@@ -63,7 +63,7 @@ export default {
   },
     mounted() {
 
-      
+      console.log((location.origin.includes("5")? location.protocol +"//localhost:3100" : location.origin) + "/api/user")
         fetch((location.origin.includes("5")? location.protocol +"//localhost:3100" : location.origin) + "/api/user", { credentials: "include" }).then(res => {
             if (!(res.status >= 200 && res.status <= 299)) {
                 this.$router.push("/login");
