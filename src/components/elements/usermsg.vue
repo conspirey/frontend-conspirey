@@ -14,6 +14,6 @@ export default {
 
 <template>
     <div class="card">
-        <UserCard :bstyle="bstyle" :btext="btext" id="cardu"></UserCard>: {{ msg }}
+        <UserCard :uid="'16021120989794304'" :bstyle="bstyle" :btext="btext" id="cardu"></UserCard>: {{ msg }}
     </div>
 </template>

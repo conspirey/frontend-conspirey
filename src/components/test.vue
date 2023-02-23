@@ -13,7 +13,7 @@ export default {
 </script>
 <template>
     <div class="pop">
-        <UserCard bstyle="text-green-500" btext="name" />
+        <UserCard :uid="'16021120989794304'" bstyle="text-green-500" btext="name" />
         <ul id="2"></ul>
     </div>
 </template>

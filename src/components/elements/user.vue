@@ -5,7 +5,8 @@ import data from "../../data"
 import Swal from 'sweetalert2';
 defineProps({
     bstyle: String,
-    btext: String
+    btext: String,
+    uid: String,
 })
 </script>
 <script lang="ts">
@@ -30,7 +31,9 @@ export default {
         },
 
         async fetchUserData() {
-            let response = await fetch((location.origin.includes("5")? location.protocol +"//localhost:3100" : location.origin) + "/api/user", {credentials: "include"})
+            console.log(this.uid)
+            let uid = this.uid? this.uid : ""
+            let response = await fetch((location.origin.includes("5")? location.protocol +"//localhost:3100" : location.origin) + "/api/user?id="+uid, {credentials: "include"})
             let json = await response.json()
             this.user = json
 
