@@ -2,7 +2,7 @@
 import { defineComponent, ref} from 'vue'
 import * as ioS from 'socket.io-client'
 import data from '../data';
-import UserCard from './elements/usermsg.vue';
+import UserCard from './elements/user.vue';
 import {User, Message} from "./type"
 
 
@@ -81,8 +81,9 @@ export default {
           const field = document.getElementById("echoinp") as HTMLInputElement
           const list = document.getElementById("echolist") as HTMLUListElement
           const text: string = data.text;
+          const id: string = data.user.id;
           const name: string = data.user.name;
-          this.messages.push({name: name, text: text})
+          this.messages.push({name: name, text: text, id: id})
           // let ele = document.createElement("li")
           // list.appendChild(ele)
   
@@ -122,8 +123,9 @@ export default {
 
 
       <div class="ldi text-left m-2 ml-4">
-        <ul v-for="{name, text} in messages">
-        <li>{{ name }}: {{ text }}</li>
+        <ul >
+        <li v-for="{name, text, id} in messages" class="">
+          <UserCard :uid="id" bstyle="text-green-500" :btext="name" />: {{ text }}</li>
         </ul>
         <ul  id="echolist"></ul>
       </div>

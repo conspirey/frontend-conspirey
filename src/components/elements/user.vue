@@ -7,13 +7,14 @@ defineProps({
     bstyle: String,
     btext: String,
     uid: String,
+    text: String,
 })
 </script>
 <script lang="ts">
 export default {
     name: "User element",
     mounted() {
-        document.getElementById("ucard")?.classList.add(this.bstyle as string)
+        // document.getElementById("ucard")?.classList.add(this.bstyle as string)
     },
     data() {
         return {
@@ -36,6 +37,8 @@ export default {
             let response = await fetch((location.origin.includes("5")? location.protocol +"//localhost:3100" : location.origin) + "/api/user?id="+uid, {credentials: "include"})
             let json = await response.json()
             this.user = json
+            console.log(uid, this.text)
+            console.log(this.user)
 
         }
     },
@@ -45,7 +48,7 @@ export default {
 
 </script> 
 <template>
-        <button @click="ShowMenu()" id="ucard">{{ btext }}</button>
+        <button @click="ShowMenu()" :class="bstyle" id="ucard">{{ btext }}</button>
 </template>
 
 <style>
