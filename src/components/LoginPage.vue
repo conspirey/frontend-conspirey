@@ -22,7 +22,7 @@ export default {
     fetch((location.origin.includes("5")? location.protocol +"//localhost:3100" : location.origin) + "/api/user", { credentials: "include"}).then((res) => {
 
       if(res.status >= 200 && res.status <= 299) {
-        this.$router.push("/")
+        this.$router.push("/chat")
       }
     })
   },
@@ -61,7 +61,7 @@ export default {
             errL[(datErr as strDataErr)].textContent = ""
           }
           if(res.status >= 200 && res.status <= 299) {
-            router.push("/")
+            router.push("/chat")
           } else {
             let errRList = (val.error as string).split("_")
             let errNum = (errRList[errRList.length - 1]).split("")[0]

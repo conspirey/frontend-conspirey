@@ -59,7 +59,7 @@ export default {
                     errL[(datErr as strDataErr)].textContent = ""
                 }
                 if(res.status >= 200 && res.status <= 299) {
-                    router.push("/")
+                    router.push("/chat")
                 } else {
                     let errRList = (val.error as string).split("_")
                     let errNum = (errRList[errRList.length - 1]).split("")[0]
