@@ -52,24 +52,25 @@ export default {
 }
 </script>
 <template>
-<nav class="border-2 rounded-md p-4  flex text-center  ">
+<nav class="border-2 rounded-md p-4  flex text-center sticky top-5 z-50 w-[80vw] bg-[#202124]">
     <div class="main font-bold text-lg">
         <a href="/">Conspirey</a> 
     </div>
     <!-- <button @click="getUserData()">DATA</button> -->
-    <div v-if="logged" class="mx-2 text-lg"> 
-    Welcome {{ user?.name }}
-    </div>
-    <div v-if="logged" class="mx-2 text-lg"> 
-        <button @click="Logout()">Logout</button>
-    </div>
-  <div v-if="!logged" class="mx-2 text-lg">
-    <a href="/register">Register</a>
+    <div class="right flex justify-end items-center">
+        <div v-if="logged" class="mx-2 text-lg"> 
+        Welcome {{ user?.name }}
+        </div>
+        <div v-if="logged" class="mx-2 text-lg"> 
+            <button @click="Logout()">Logout</button>
+        </div>
+        <div v-if="!logged" class="mx-2 text-lg">
+            <a href="/register">Register</a>
     
-  </div>
-    <div v-if="!logged" class="mx-2 text-lg">
-    <a href="/login">login</a>
-    
-  </div>
+        </div>
+        <div v-if="!logged" class="mx-2 text-lg">
+            <a href="/login">login</a>
+        </div> 
+    </div>
 </nav>
   </template>

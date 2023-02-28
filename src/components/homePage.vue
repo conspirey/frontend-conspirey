@@ -1,7 +1,210 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import NavBar from "./NavBar.vue"
+</script>
 
 <template>
-    <div class="main">
-        <a href="/login">Login</a>
+    <div class="main ">
+        <NavBar></NavBar>
+        <nav class="flex justify-between items-center">
+  <div class="logo">Logo</div>
+  <ul class="flex justify-end items-center">
+    <li><a href="#">Item 1</a></li>
+    <li><a href="#">Item 2</a></li>
+    <li><a href="#">Item 3</a></li>
+  </ul>
+</nav>
+        <p>
+            g
+            <br>
+
+
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            g
+            <br>
+            
+        </p>
     </div>
 </template>
