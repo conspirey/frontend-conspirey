@@ -3,6 +3,7 @@ import LoginPage from "../components/LoginPage.vue"
 import RegisterPage from "../components/RegisterPage.vue"
 import AppVue from "../components/Main.vue";
 import testVue from "../components/test.vue";
+import testVue12 from "../components/test12.vue";
 import homePage from "../components/homePage.vue"
 import HelloWorldVue from "../components/HelloWorld.vue";
 const route = createRouter({
@@ -18,9 +19,14 @@ const route = createRouter({
             component: AppVue 
         },
         {  
+            path: "/teste", 
+            name: "Test",
+            component: testVue12 
+        },
+        {  
             path: "/test", 
             name: "Test",
-            component: testVue 
+            component: testVue12 
         },
         {  
             path: "/login",
