@@ -1,23 +1,56 @@
-<template>
-  <div class="p-10">
+<script>
+// Get the button element
+window.onload = function() {
+  // Get the button element
+  var button = document.getElementById("username");
 
-    <div class="dropdown inline-block relative">
-      <button class="bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center">
-        <span class="mr-1 px-4">mrredo</span>
-        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/> </svg>
-      </button>
-      <ul class="dropdown-menu absolute hidden text-gray-700 pt-1">
-        <li class=""><a class="rounded-t rounded-md bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="#">Logout</a></li>
-        <li class=""><a class="hidden bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="#">Two</a></li>
-        <li class=""><a class="hidden rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="#">Three is the magic number</a></li>
-      </ul>
+  // Get the button text width
+  var buttonTextWidth = button.offsetWidth;
+
+  // Set the dropdown content width based on the button text width
+  var dropdownContent = document.querySelector(".dropdown-content");
+  dropdownContent.style.width = buttonTextWidth + "px";
+};
+</script>
+<template>
+  <div class="dropdown">
+    <button class="dropbtn" id="username">Username</button>
+    <div class="dropdown-content bg-gray-700 rounded-lg">
+      <p>Hidden content here</p>
     </div>
-    <br>
   </div>
+
+
+
 </template>
 <style>
 
-.dropdown:hover .dropdown-menu {
+/* Style the button */
+.dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 8px 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  width: auto;
+}
+
+/* Style the dropdown content */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  //background-color: #f9f9f9;
+  min-width: 10px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+
+}
+
+/* Show the dropdown content on hover */
+.dropdown:hover .dropdown-content {
   display: block;
 }
+
+
 </style>
