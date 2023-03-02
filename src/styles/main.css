@@ -6,4 +6,8 @@ input, textarea {
 
     background-color : #3e3e3e; 
     color: #ffffff;
-  }
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
