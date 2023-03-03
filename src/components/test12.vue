@@ -1,20 +1,39 @@
-<script>
-// Get the button element
-window.onload = function() {
-  // Get the button element
-  var button = document.getElementById("username");
 
-  // Get the button text width
-  var buttonTextWidth = button.offsetWidth;
+<script lang="ts">
+export default {
+  data() {
+    return {
+      username: "user"
+    }
+  },
+  async mounted() {
+    let button = document.getElementById("username");
 
-  // Set the dropdown content width based on the button text width
-  var dropdownContent = document.querySelector(".dropdown-content");
-  dropdownContent.style.width = buttonTextWidth + "px";
-};
+    let data = await fetch("http://localhost:3100/api/user", {credentials: "include"})
+    let json = await data.json()
+    this.username = json.name as string
+  },
+  methods: {
+    hoverBTN() {
+      this.setLengthContent()
+    },
+    setLengthContent() {
+
+      let button = document.getElementById("username");
+
+      // Get the button text width
+      let buttonTextWidth = button?.offsetWidth;
+
+      // Set the dropdown content width based on the button text width
+      let dropdownContent = document.querySelector(".dropdown-content");
+      (dropdownContent as any).style.width = buttonTextWidth + "px";
+    }
+  }
+}
 </script>
 <template>
   <div class="dropdown">
-    <button class="dropbtn" id="username">Username</button>
+    <button class="dropbtn p-[5rem]" @mouseover="hoverBTN" id="username">{{ username }}</button>
     <div class="dropdown-content bg-gray-700 rounded-lg">
       <p>Hidden content here</p>
     </div>
@@ -40,7 +59,6 @@ window.onload = function() {
 .dropdown-content {
   display: none;
   position: absolute;
-  //background-color: #f9f9f9;
   min-width: 10px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
