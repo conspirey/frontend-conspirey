@@ -70,16 +70,13 @@ export default {
   }
 }
 </script>
-<template >
+<template>
   <div class="dropdown" v-if="logged">
     <button class="dropbtn p-[5rem]" @mouseover="hoverBTN" id="username">{{ username }}</button>
     <ul class="dropdown-content bg-gray-700 rounded-md p-2">
       <li class=""><button v-on:click="Logout" class="p-1 px-[1rem] border-[1px]">Logout</button></li>
 
     </ul>
-    <!-- <div class="dropdown-content bg-gray-700 rounded-md p-2">
-      <button class="px-2">Logout</button>
-    </div> -->
   </div>
 
 

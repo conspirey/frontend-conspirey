@@ -27,7 +27,6 @@ export default {
             }).then((res) => {
                 res.json().then((js) => {
                     this.user = js
-                    console.log(js)
                     if(res.status >= 200 && res.status <= 299) {
                         this.logged = true
                     }
@@ -47,6 +46,22 @@ export default {
                 }
             })
             if(this.logged) this.$router.push("/login")
+        },
+        setLengthContent() {
+
+            let button = document.getElementById("username");
+
+            // Get the button text width
+            let buttonTextWidth = button?.offsetWidth;
+
+            // Set the dropdown content width based on the button text width
+            let dropdownContent = document.querySelector(".dropdown-content");
+            let dropdownliButton = document.querySelector(".dropdown-li-button");
+            (dropdownContent as any).style.width = buttonTextWidth + "px";
+            (dropdownliButton as any).style.width = ((buttonTextWidth as number) / 6) *5  + "px";
+        },
+        hoverBTN() {
+            this.setLengthContent()
         },
     },
 }
@@ -69,7 +84,14 @@ export default {
             <a class="border-2 p-2 rounded-md px-3  transition-all duration-300 hover:border-blue-900" href="/register">Register</a>
     
         </div>
-        <userDropdown v-if="logged"></userDropdown>
+        <div class="dropdown" v-if="logged">
+            <button class="dropbtn p-[5rem]" @mouseover="hoverBTN" id="username">{{ user.name }}</button>
+            <ul class="dropdown-content bg-gray-700 rounded-md p-2">
+                <li class=""><button v-on:click="Logout" class="dropdown-li-button p-1 px-[1rem] border-[1px]">Logout</button></li>
+
+            </ul>
+        </div>
+        <!-- <userDropdown v-if="logged"></userDropdown> -->
         <div v-if="!logged" class="mx-2 text-lg">
             <a class="border-2 p-2 rounded-md px-3  transition-all duration-300 hover:border-blue-900" href="/login">login</a>
         </div> 
@@ -77,3 +99,38 @@ export default {
     </div>
 </nav>
   </template>
+
+<style>
+
+/* Style the button */
+.dropdown-li-button {
+    min-width: 5rem;
+}
+.dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 8px 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  width: auto;
+  min-width: 6rem;
+}
+
+/* Style the dropdown content */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  min-width: 6rem;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+
+}
+
+/* Show the dropdown content on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
+</style>
