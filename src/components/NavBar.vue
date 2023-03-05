@@ -98,7 +98,7 @@ export default {
     min-width: 5rem;
 }
 .dropbtn {
-  background-color: #4CAF50;
+  background-color: #3D6DC8;
   color: white;
   padding: 8px 16px;
   font-size: 16px;
