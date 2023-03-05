@@ -67,19 +67,12 @@ export default {
 }
 </script>
 <template>
-<nav class="border-2 flex justify-between rounded-md p-4 text-center sticky top-5 z-1 w-[80vw] bg-[#202124]">
-    <div class="flex mx-auto items-center">
-    <div class="main font-bold text-lg flex">
+<nav class="py-4 px-6 flex items-center justify-between border-b-2 border-white fixed top-0 left-0 w-full z-10 bg-[#202124]">
+    <div class="main font-bold justify-start text-lg flex">
         <a href="/">Conspirey</a> 
     </div>
-    <!-- <button @click="getUserData()">DATA</button> -->
     <div class="right flex justify-end p-2">
-        <!-- <div v-if="logged" class="mx-2 text-lg"> 
-        <button>{{ user?.name }}</button>
-        </div>
-        <div v-if="logged" class="mx-2 text-lg"> 
-            <button class="" @click="Logout()">Logout</button>
-        </div> -->
+
         <div v-if="!logged" class="mx-2 text-lg">
             <a class="border-2 p-2 rounded-md px-3  transition-all duration-300 hover:border-blue-900" href="/register">Register</a>
     
@@ -91,11 +84,9 @@ export default {
 
             </ul>
         </div>
-        <!-- <userDropdown v-if="logged"></userDropdown> -->
         <div v-if="!logged" class="mx-2 text-lg">
             <a class="border-2 p-2 rounded-md px-3  transition-all duration-300 hover:border-blue-900" href="/login">login</a>
         </div> 
-    </div>
     </div>
 </nav>
   </template>
