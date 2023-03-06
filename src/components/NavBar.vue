@@ -58,7 +58,7 @@ export default {
             let dropdownContent = document.querySelector(".dropdown-content");
             let dropdownliButton = document.querySelector(".dropdown-li-button");
             (dropdownContent as any).style.width = buttonTextWidth + "px";
-            (dropdownliButton as any).style.width = ((buttonTextWidth as number) / 6) *5  + "px";
+            (dropdownliButton as any).style.width = ((buttonTextWidth as number) / 6) *5.1  + "px";
         },
         hoverBTN() {
             this.setLengthContent()
