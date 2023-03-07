@@ -37,15 +37,17 @@ export default {
             
         },
         Logout() {
+            let router = this.$router
             fetch((location.origin.includes("5")? location.protocol +"//localhost:3100" : location.origin) + "/auth/logout", {
                 method: "POST",
                 credentials: "include",
             }).then((res) => {
                 if(res.status >= 200 && res.status <= 299) {
                     this.logged = false
+                    router.push("/login")
                 }
             })
-            if(this.logged) this.$router.push("/login")
+            // if(this.logged) this.$router.push("/login")
         },
         setLengthContent() {
 
@@ -71,12 +73,18 @@ export default {
     <div class="main font-bold justify-start text-lg flex">
         <a href="/">Conspirey</a> 
     </div>
-    <div class="right flex justify-end p-2">
+    <div class="right flex items-center p-2">
 
         <div v-if="!logged" class="mx-2 text-lg">
             <a class="border-2 p-2 rounded-md px-3  transition-all duration-300 hover:border-blue-900" href="/register">Register</a>
     
         </div>
+        <div v-if="!logged" class="mx-2 text-lg">
+            <a class="border-2 p-2 rounded-md px-3  transition-all duration-300 hover:border-blue-900" href="/login">login</a>
+        </div> 
+        <div v-if="logged" class="mx-2 text-lg">
+            <a class="border-2 p-2 rounded-md px-3  transition-all duration-300 hover:border-blue-900 mr-4" href="/chat">Chat</a>
+        </div> 
         <div class="dropdown" v-if="logged">
             <button class="dropbtn p-[5rem]" @mouseover="hoverBTN" id="username">{{ user.name }}</button>
             <ul class="dropdown-content bg-gray-700 rounded-md p-2">
@@ -84,9 +92,7 @@ export default {
 
             </ul>
         </div>
-        <div v-if="!logged" class="mx-2 text-lg">
-            <a class="border-2 p-2 rounded-md px-3  transition-all duration-300 hover:border-blue-900" href="/login">login</a>
-        </div> 
+
     </div>
 </nav>
   </template>

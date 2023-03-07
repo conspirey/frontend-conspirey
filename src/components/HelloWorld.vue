@@ -58,6 +58,7 @@ export default {
     return {
       messages: [] as any,
       socket: null as any,
+      user: { id: "", admin: false, name: "" },
       io: io,
     }
   },
@@ -71,7 +72,7 @@ export default {
     }).catch((reason) => {
       this.$router.push("/login");
     });
-
+    this.getUserData()
     const socket = this.io.connect((location.origin.includes("5") ? location.protocol + "//localhost:3100" : location.origin) + "/"/*.replace("https://", "").replace("http://","")/ + "/socket.io/"*/, { transports: ["websocket"], withCredentials: true })
     this.socket = socket
     socket.on("connect_error", (err: any) => {
@@ -92,30 +93,48 @@ export default {
     })
   },
   methods: {
+    getUserData() {
+      fetch((location.origin.includes("5") ? location.protocol + "//localhost:3100" : location.origin) + "/api/user", {
+        method: "GET",
+        credentials: "include",
+      }).then((res) => {
+        res.json().then((js) => {
+          this.user = js
+        }).catch((err) => {
+          console.log(err)
+        })
+      })
+
+    },
+
     async btnOnClick1(ev: MouseEvent) {
+      const type = (document.getElementById("selmenu") as HTMLSelectElement).value
       const field = document.getElementById("echoinp") as HTMLInputElement
-      const req = fetch((location.origin.includes("5") ? location.protocol + "//localhost:3100" : location.origin) + "/api/message?type=basic", {
+      const req = fetch((location.origin.includes("5") ? location.protocol + "//localhost:3100" : location.origin) + `/api/message?type=${type}`, {
         method: "POST",
         credentials: "include",
         body: JSON.stringify({
           text: field?.value,
         }),
       })
+      field.value = ""
     },
     async EnterKey1(ev: KeyboardEvent) {
       if (ev.key == "Enter") {
+        const type = (document.getElementById("selmenu") as HTMLSelectElement).value
         const field = document.getElementById("echoinp") as HTMLInputElement
-        const req = fetch((location.origin.includes("5") ? location.protocol + "//localhost:3100" : location.origin) + "/api/message?type=basic", {
+        const req = fetch((location.origin.includes("5") ? location.protocol + "//localhost:3100" : location.origin) + `/api/message?type=${type}`, {
           method: "POST",
           credentials: "include",
           body: JSON.stringify({
             text: field?.value,
           }),
         })
+        field.value = ""
       }
     },
 
-    
+
 
 
   },
@@ -126,8 +145,15 @@ export default {
   <div>
     <br />
     <button v-on:click="btnOnClick1" id="echobtn">echo text</button>
+    <br>
+    <select id="selmenu" v-if="user.admin">
+      <option value="basic">Basic</option>
+      <option value="server">Server</option>
+    </select>
     <br />
     <input type="text" value="hello" id="echoinp" v-on:keyup="EnterKey1" />
+
+    
     <br />
     <div class="par grid place-items-center">
       <div class="d my-5 w-[25rem] sm:w-[35rem] lg:w-[50rem] md:w-[40rem] border-4 rounded-md">
