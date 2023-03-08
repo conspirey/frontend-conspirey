@@ -108,9 +108,16 @@ export default {
     },
 
     async btnOnClick1(ev: MouseEvent) {
-      const type = (document.getElementById("selmenu") as HTMLSelectElement).value
+      let endpoint: string = `/api/message?type=`
+      if (this.user.admin) {
+        const type = (document.getElementById("selmenu") as HTMLSelectElement).value
+        endpoint += type
+      } else {
+        endpoint += "basic"
+      }
+
       const field = document.getElementById("echoinp") as HTMLInputElement
-      const req = fetch((location.origin.includes("5") ? location.protocol + "//localhost:3100" : location.origin) + `/api/message?type=${type}`, {
+      const req = fetch((location.origin.includes("5") ? location.protocol + "//localhost:3100" : location.origin) + endpoint, {
         method: "POST",
         credentials: "include",
         body: JSON.stringify({
@@ -121,9 +128,15 @@ export default {
     },
     async EnterKey1(ev: KeyboardEvent) {
       if (ev.key == "Enter") {
-        const type = (document.getElementById("selmenu") as HTMLSelectElement).value
+        let endpoint: string = `/api/message?type=`
+        if (this.user.admin) {
+          const type = (document.getElementById("selmenu") as HTMLSelectElement).value
+          endpoint += type
+        } else {
+          endpoint += "basic"
+        }
         const field = document.getElementById("echoinp") as HTMLInputElement
-        const req = fetch((location.origin.includes("5") ? location.protocol + "//localhost:3100" : location.origin) + `/api/message?type=${type}`, {
+        const req = fetch((location.origin.includes("5") ? location.protocol + "//localhost:3100" : location.origin) + endpoint, {
           method: "POST",
           credentials: "include",
           body: JSON.stringify({
@@ -153,7 +166,7 @@ export default {
     <br />
     <input type="text" value="hello" id="echoinp" v-on:keyup="EnterKey1" />
 
-    
+
     <br />
     <div class="par grid place-items-center">
       <div class="d my-5 w-[25rem] sm:w-[35rem] lg:w-[50rem] md:w-[40rem] border-4 rounded-md">
