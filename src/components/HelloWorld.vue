@@ -84,7 +84,8 @@ export default {
       const text: string = data.text;
       const id: string = data.user.id;
       const name: string = data.user.name;
-      this.messages.push({ name: name, text: text, id: id })
+      console.log(data)
+      this.messages.push({ name: name, text: text, id: id, type: data.type })
       // let ele = document.createElement("li")
       // list.appendChild(ele)
 
@@ -177,8 +178,11 @@ export default {
 
           <div class="ldi text-left m-2 ml-4">
             <ul>
-              <li v-for="{ name, text, id } in messages" class="">
-                <UserCard :uid="id" bstyle="text-green-500" :btext="name" />: {{ text }}
+              <li v-for="{ name, text, id, type } in messages" class="">
+                <div v-if="type=='basic'"><UserCard  :uid="id" bstyle="text-green-500" :btext="name" />: {{ text }}</div>
+                <div v-if="type=='server'" class="server">
+                  Server message: {{ text }}
+                </div>
               </li>
             </ul>
             <ul id="echolist"></ul>
