@@ -180,7 +180,7 @@ export default {
             <ul>
               <li v-for="{ name, text, id, type } in messages" class="">
                 <div v-if="type=='basic'"><UserCard  :uid="id" bstyle="text-green-500" :btext="name" />: {{ text }}</div>
-                <div v-if="type=='server'" class="server">
+                <div v-if="type=='server'" class="server text-red-600">
                   Server message: {{ text }}
                 </div>
               </li>
