@@ -58,6 +58,7 @@ export default {
     return {
       messages: [] as any,
       socket: null as any,
+      serverTimeron: false,
       user: { id: "", admin: false, name: "" },
       io: io,
     }
@@ -94,6 +95,10 @@ export default {
     })
   },
   methods: {
+    onMenuChange() {
+      const sel = (document.getElementById("selmenu") as HTMLSelectElement)
+      if (sel.value == "server_timer") this.serverTimeron = true
+    },
     getUserData() {
       fetch((location.origin.includes("5") ? location.protocol + "//localhost:3100" : location.origin) + "/api/user", {
         method: "GET",
@@ -158,15 +163,27 @@ export default {
 <template>
   <div>
     <br />
-    <button v-on:click="btnOnClick1" id="echobtn">echo text</button>
-    <br>
-    <select id="selmenu" v-if="user.admin">
-      <option value="basic">Basic</option>
-      <option value="server">Server</option>
-    </select>
-    <br />
-    <input type="text" value="hello" id="echoinp" v-on:keyup="EnterKey1" />
+    <div class="actions grid">
+      <button v-on:click="btnOnClick1" id="echobtn">echo text</button>
+      <br>
+      <select id="selmenu" @change="onMenuChange()" v-if="user.admin">
+        <option value="basic">Basic</option>
+        <option value="server">Server</option>
+        <option value="server_timer">ServerTimer</option>
+      </select>
+      <br />
+      <div v-if="serverTimeron" class="servertimer grid">
+        <div class="timerdi" id="timerdi">
+          Timer <input type="number" id="timer" min="1" max="100">
+        </div>
+        
+        <div class="delaydi">
+          Delay: <input type="number" min="0" max="10000" id="delay">
+        </div>
 
+      </div>
+      <input type="text" value="hello" id="echoinp" v-on:keyup="EnterKey1" />
+    </div>
 
     <br />
     <div class="par grid place-items-center">
@@ -179,8 +196,10 @@ export default {
           <div class="ldi text-left m-2 ml-4">
             <ul>
               <li v-for="{ name, text, id, type } in messages" class="">
-                <div v-if="type=='basic'"><UserCard  :uid="id" bstyle="text-green-500" :btext="name" />: {{ text }}</div>
-                <div v-if="type=='server'" class="server text-red-600">
+                <div v-if="type == 'basic'">
+                  <UserCard :uid="id" bstyle="text-green-500" :btext="name" />: {{ text }}
+                </div>
+                <div v-if="type == 'server'" class="server text-red-600">
                   Server message: {{ text }}
                 </div>
               </li>
