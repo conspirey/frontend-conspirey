@@ -69,7 +69,7 @@ export default {
 }
 </script>
 <template>
-<nav class="py-4 px-6 flex items-center sm:justify-between border-b-2 border-white fixed top-0 left-0 w-full z-10 bg-[#202124]">
+<nav class=" py-2 px-6 flex items-center sm:justify-between border-b-2 border-white fixed top-0 left-0 w-full z-10 bg-[#202124]">
     <div class="main font-bold justify-start text-lg flex">
         <a href="/">Conspirey</a> 
     </div>

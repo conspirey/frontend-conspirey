@@ -89,7 +89,7 @@ export default {
 </script>
 <template>
     <div class="register">
-            <a href="/login">Login</a>
+            <a href="/login" class="text-xl">Login</a>
             <div class="login border-2 p-4 rounded-lg">
             <div class="text font-bold text-lg ">
                 Register your Conspirey account
@@ -98,6 +98,7 @@ export default {
             <span id="userINVALID" class="text-sm text-red-500 font-bold"></span>
             <br />
             <input id="userR" class="
+            lg:text-lg
             form-control
             block
             w-full
@@ -120,6 +121,7 @@ export default {
             <span id="passINVALID" class="text-sm text-red-500 font-bold"></span>
             <br />
             <input id="passR" class="
+            lg:text-lg
             form-control
             block
             w-full

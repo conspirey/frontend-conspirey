@@ -93,18 +93,18 @@ export default {
 }
 </script>
 <template>
-  <div class="register flex items-center justify-center h-screen">
+  <div class="register flex items-center justify-center h-[80vh]">
     <div class="">
-      <a href="/register" class="text-2xl">Register</a>
+      <a href="/register" class="text-xl">Register</a>
       <div class="login border-2 p-4 rounded-lg">
-        <div class="text font-bold text-2xl ">
+        <div class="font-bold text-1xl ">
           Login into your Conspirey account
         </div>
 
-        <span id="userINVALID" class="text-red-500 text-lg font-bold"></span>
+        <span id="userINVALID" class="text-red-500 text-md font-bold"></span>
         <br />
         <input id="userR" class="
-              text-xl
+              text-base lg:text-lg
               form-control
               block
               w-full
@@ -126,7 +126,7 @@ export default {
         <span id="passINVALID" class=" text-red-500 text-lg font-bold"></span>
         <br />
         <input id="passR" class="
-              text-xl
+              text-base lg:text-lg
               form-control
               block
               w-full
@@ -144,7 +144,7 @@ export default {
               focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
               " type="password" placeholder="Enter password..." />
         <!--      <span class="text-gray-500 text-sm">password has to be from 8-32 characters</span> <br>-->
-        <button @click="RegBTN" class="mt-4 border-2 border-white  text-xl px-6 p-2 hover:drop-shadow-lg" id="btnReg">
+        <button @click="RegBTN" class="mt-4 border-2 border-white  text-lg px-6 p-2 hover:drop-shadow-lg" id="btnReg">
           Login</button>
         <br />
         <span id="regINVALID" class="text-lg text-red-500 font-bold"></span>

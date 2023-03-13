@@ -122,14 +122,25 @@ export default {
       } else {
         endpoint += "basic"
       }
-
       const field = document.getElementById("echoinp") as HTMLInputElement
+        const body = {
+          text: field?.value,
+          server_message: {}
+        }
+        if(this.user.admin) {
+          if(this.serverTimeron) {
+            const delay = (document.getElementById("delay") as HTMLInputElement).value
+            const timer = (document.getElementById("timer") as HTMLInputElement).value
+            body.server_message = {
+              delay: parseInt(delay),
+              timer: parseInt(timer)
+            }
+          }
+        }
       const req = fetch((location.origin.includes("5") ? location.protocol + "//localhost:3100" : location.origin) + endpoint, {
         method: "POST",
         credentials: "include",
-        body: JSON.stringify({
-          text: field?.value,
-        }),
+        body: JSON.stringify(body),
       })
       field.value = ""
     },
@@ -143,12 +154,25 @@ export default {
           endpoint += "basic"
         }
         const field = document.getElementById("echoinp") as HTMLInputElement
+        const body = {
+          text: field?.value,
+          server_message: {}
+        }
+        if(this.user.admin) {
+          if(this.serverTimeron) {
+            const delay = (document.getElementById("delay") as HTMLInputElement).value
+            const timer = (document.getElementById("timer") as HTMLInputElement).value
+            body.server_message = {
+              delay: parseInt(delay),
+              timer: parseInt(timer)
+            }
+          }
+        }
+        
         const req = fetch((location.origin.includes("5") ? location.protocol + "//localhost:3100" : location.origin) + endpoint, {
           method: "POST",
           credentials: "include",
-          body: JSON.stringify({
-            text: field?.value,
-          }),
+          body: JSON.stringify(body),
         })
         field.value = ""
       }
@@ -162,7 +186,7 @@ export default {
 </script>
 
 <template>
-  <div class="flex flex-wrap justify-center items-center">
+  <div class="flex flex-wrap justify-center items-center h-[60vh]">
     <br />
     <div class="actions grid w-[80vw] md:w-[40vw]">
       <button v-on:click="btnOnClick1" id="echobtn">echo text</button>
@@ -201,7 +225,7 @@ export default {
                   <UserCard :uid="id" bstyle="text-green-500" :btext="name" />: {{ text }}
                 </div>
                 <div v-if="type == 'server'" class="server text-red-600">
-                  Server message: {{ text }}
+                  Server: {{ text }}
                 </div>
               </li>
             </ul>
