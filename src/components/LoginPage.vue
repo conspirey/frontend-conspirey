@@ -19,9 +19,9 @@ export default {
     }
   },
   mounted() {
-    fetch((location.origin.includes("5")? location.protocol +"//localhost:3100" : location.origin) + "/api/user", { credentials: "include"}).then((res) => {
+    fetch((location.origin.includes("5") ? location.protocol + "//localhost:3100" : location.origin) + "/api/user", { credentials: "include" }).then((res) => {
 
-      if(res.status >= 200 && res.status <= 299) {
+      if (res.status >= 200 && res.status <= 299) {
         this.$router.push("/chat")
       }
     })
@@ -34,8 +34,8 @@ export default {
       let logbtn = document.getElementById("btnReg") as HTMLButtonElement
       logbtn.disabled = true
       let user = document.getElementById("userR") as HTMLInputElement,
-          password = document.getElementById("passR") as HTMLInputElement
-      fetch((location.origin.includes("5")? location.protocol +"//localhost:3100" : location.origin) + "/auth/login", {
+        password = document.getElementById("passR") as HTMLInputElement
+      fetch((location.origin.includes("5") ? location.protocol + "//localhost:3100" : location.origin) + "/auth/login", {
         method: "POST",
         body: JSON.stringify({
           name: user.value,
@@ -43,7 +43,7 @@ export default {
         }),
         credentials: "include",
       }).then((res) => {
-        if(res.status == 422) {
+        if (res.status == 422) {
         }
         res.json().then((val) => {
           let errL = {
@@ -60,7 +60,7 @@ export default {
           for (const datErr in errL) {
             errL[(datErr as strDataErr)].textContent = ""
           }
-          if(res.status >= 200 && res.status <= 299) {
+          if (res.status >= 200 && res.status <= 299) {
             router.push("/chat")
           } else {
             let errRList = (val.error as string).split("_")
@@ -72,7 +72,7 @@ export default {
             eleSp.textContent = ErrText
 
           }
-         
+
         })
 
 
@@ -83,7 +83,7 @@ export default {
       }).catch(() => {
         logbtn.disabled = false
       })
-
+      logbtn.disabled = false
     }
 
 
@@ -93,64 +93,66 @@ export default {
 }
 </script>
 <template>
-  <div class="register">
-    <a href="/register">Register</a>
-    <div class="login border-2 p-4 rounded-lg">
-      <div class="text font-bold text-lg ">
-        Login into your Conspirey account
+  <div class="register flex items-center justify-center h-screen">
+    <div class="">
+      <a href="/register" class="text-2xl">Register</a>
+      <div class="login border-2 p-4 rounded-lg">
+        <div class="text font-bold text-2xl ">
+          Login into your Conspirey account
+        </div>
+
+        <span id="userINVALID" class="text-red-500 text-lg font-bold"></span>
+        <br />
+        <input id="userR" class="
+              text-xl
+              form-control
+              block
+              w-full
+              px-3
+              py-1.5
+              font-normal
+              text-gray-700
+              bg-white bg-clip-padding
+              border border-solid border-gray-300
+              rounded
+              transition
+              ease-in-out
+              m-0
+              focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
+              " type="text" placeholder="Enter username..." />
+        <!--      <span class="text-gray-500 text-sm">username has to be from 3-16 characters long, <br> can contain numbers, latin letters, _ symbol</span>-->
+        <!-- <div class="di"></div> -->
+        <br />
+        <span id="passINVALID" class=" text-red-500 text-lg font-bold"></span>
+        <br />
+        <input id="passR" class="
+              text-xl
+              form-control
+              block
+              w-full
+              px-3
+              py-1.5
+            
+              font-normal
+              text-gray-700
+              bg-white bg-clip-padding
+              border border-solid border-gray-300
+              rounded
+              transition
+              ease-in-out
+              m-0
+              focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
+              " type="password" placeholder="Enter password..." />
+        <!--      <span class="text-gray-500 text-sm">password has to be from 8-32 characters</span> <br>-->
+        <button @click="RegBTN" class="mt-4 border-2 border-white  text-xl px-6 p-2 hover:drop-shadow-lg" id="btnReg">
+          Login</button>
+        <br />
+        <span id="regINVALID" class="text-lg text-red-500 font-bold"></span>
+        <br />
+        <!--      <div class="war">-->
+        <!--        <span class="text-gray-500 text-sm">THERE ARE NO WAYS TO CHANGE PASSWORD</span>-->
+        <!--      </div>-->
       </div>
-
-      <span id="userINVALID" class="text-sm text-red-500 font-bold"></span>
-      <br />
-      <input id="userR" class="
-            form-control
-            block
-            w-full
-            px-3
-            py-1.5
-            text-base
-            font-normal
-            text-gray-700
-            bg-white bg-clip-padding
-            border border-solid border-gray-300
-            rounded
-            transition
-            ease-in-out
-            m-0
-            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
-            " type="text"  placeholder="Enter username..." />
-<!--      <span class="text-gray-500 text-sm">username has to be from 3-16 characters long, <br> can contain numbers, latin letters, _ symbol</span>-->
-      <!-- <div class="di"></div> -->
-      <br />
-      <span id="passINVALID" class="text-sm text-red-500 font-bold"></span>
-      <br />
-      <input id="passR" class="
-            form-control
-            block
-            w-full
-            px-3
-            py-1.5
-            text-base
-            font-normal
-            text-gray-700
-            bg-white bg-clip-padding
-            border border-solid border-gray-300
-            rounded
-            transition
-            ease-in-out
-            m-0
-            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
-            " type="password" placeholder="Enter password..." />
-<!--      <span class="text-gray-500 text-sm">password has to be from 8-32 characters</span> <br>-->
-      <button @click="RegBTN" class="mt-4 border-2 border-white  px-6 p-2 hover:drop-shadow-lg" id="btnReg">
-        Login</button>
-      <br />
-      <span id="regINVALID" class="text-sm text-red-500 font-bold"></span>
-      <br />
-<!--      <div class="war">-->
-<!--        <span class="text-gray-500 text-sm">THERE ARE NO WAYS TO CHANGE PASSWORD</span>-->
-<!--      </div>-->
-
     </div>
   </div>
 </template>

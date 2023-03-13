@@ -1,6 +1,11 @@
+
+#app {
+    background-color: #202124 !important;
+    color: #ffffff !important;
+}
 body {
-    background-color: #202124;
-    color: #ffffff;
+    background-color: #202124 !important;
+    color: #ffffff !important;
 }
 input, textarea {
 

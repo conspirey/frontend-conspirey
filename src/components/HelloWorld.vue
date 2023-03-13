@@ -98,6 +98,7 @@ export default {
     onMenuChange() {
       const sel = (document.getElementById("selmenu") as HTMLSelectElement)
       if (sel.value == "server_timer") this.serverTimeron = true
+      else this.serverTimeron = false
     },
     getUserData() {
       fetch((location.origin.includes("5") ? location.protocol + "//localhost:3100" : location.origin) + "/api/user", {
@@ -161,9 +162,9 @@ export default {
 </script>
 
 <template>
-  <div>
+  <div class="flex flex-wrap justify-center items-center">
     <br />
-    <div class="actions grid">
+    <div class="actions grid w-[80vw] md:w-[40vw]">
       <button v-on:click="btnOnClick1" id="echobtn">echo text</button>
       <br>
       <select id="selmenu" @change="onMenuChange()" v-if="user.admin">
@@ -187,7 +188,7 @@ export default {
 
     <br />
     <div class="par grid place-items-center">
-      <div class="d my-5 w-[25rem] sm:w-[35rem] lg:w-[50rem] md:w-[40rem] border-4 rounded-md">
+      <div class="my-5 border-4 rounded-md md:w-[60vw] w-[80vw]">
         <h3>Chat with other conspireys</h3>
         <hr />
         <div class="overflow-y-scroll h-[20rem] ">
